@@ -4,6 +4,34 @@
 
 A Model Context Protocol (MCP) server for Chrome browser automation via debugging protocol, specifically designed to connect to Chrome debugging ports and enable browser automation with persistent login sessions.
 
+## 🎯 Project Advantages
+
+### 🚀 Core Technical Advantages
+
+1. **🔧 Zero-Dependency Deployment**
+   - No Chrome extensions required
+   - No Chrome Web Store approval needed
+   - Fully autonomous in enterprise environments
+
+2. **📦 Container-Friendly** 
+   - Perfect support for Docker/Kubernetes deployment
+   - No extension permission or installation issues
+   - Ideal for cloud-native architecture
+
+3. **⚡ Two-Step Launch**
+   ```bash
+   # Launch with just two commands
+   # 1. Start Chrome in debug mode
+   /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
+   # 2. Run MCP server
+   npx chrome-debug-mcp
+   ```
+
+4. **🛡️ Enterprise-Grade Security**
+   - Based on standard Chrome DevTools Protocol
+   - No third-party extension permissions required
+   - Complete local operation
+
 ## 🚀 Quick Start
 
 ### Option 1: Direct Usage (Recommended)
@@ -30,12 +58,14 @@ npm start
 
 ## Core Features
 
-- ✅ **Chrome Debug Port Connection**: Connect to existing Chrome instances, preserving login sessions
-- 🔍 **Smart Browser Discovery**: Auto-discover Chrome instances in local and Docker environments  
+- ✅ **Chrome Debug Port Connection**: Based on standard Chrome DevTools Protocol, no extensions required
+- 🏢 **Enterprise-Grade Deployment**: Zero-dependency deployment, no Chrome Web Store approval needed
 - 📱 **Intelligent Tab Management**: Reuse tabs for same domains, avoid duplicate openings
 - 🖼️ **Real-time Screenshot Feedback**: Automatic screenshots after each operation for visual feedback
 - 🌐 **Network Activity Monitoring**: Auto-wait for page load completion
-- 🐳 **Docker Environment Support**: Support for containerized Chrome instances
+- 🐳 **Native Docker Support**: Perfect support for containerized Chrome instances, no extension limitations
+- ⚡ **Two-Step Launch**: Start Chrome in debug mode then run `npx chrome-debug-mcp`, no complex installation required
+- 🔍 **Smart Browser Discovery**: Auto-discover Chrome instances in local and Docker environments
 
 ## Configuration & Usage
 

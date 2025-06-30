@@ -4,6 +4,34 @@
 
 一个基于 Model Context Protocol (MCP) 的浏览器自动化服务器，专门用于连接 Chrome 调试端口，实现带登录状态的浏览器自动化操作。
 
+## 🎯 项目优势
+
+### 🚀 核心技术优势
+
+1. **🔧 零依赖部署**
+   - 无需安装任何Chrome扩展
+   - 无需通过Chrome Web Store审批
+   - 企业内网环境完全自主可控
+
+2. **📦 容器化友好** 
+   - 完美支持Docker/Kubernetes部署
+   - 无扩展权限和安装问题
+   - 适合云原生架构
+
+3. **⚡ 两步启动**
+   ```bash
+   # 只需两条命令即可运行
+   # 1. 启动Chrome调试模式
+   /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
+   # 2. 运行MCP服务器
+   npx chrome-debug-mcp
+   ```
+
+4. **🛡️ 企业级安全**
+   - 基于标准Chrome DevTools Protocol
+   - 无需第三方扩展权限
+   - 完全本地化运行
+
 ## 🚀 快速开始
 
 ### 方式一：直接使用 (推荐)
@@ -30,12 +58,14 @@ npm start
 
 ## 核心特性
 
-- ✅ **Chrome调试端口连接**: 连接现有Chrome实例，保持登录状态
-- 🔍 **智能浏览器发现**: 自动发现本地和Docker环境中的Chrome实例  
+- ✅ **Chrome调试端口连接**: 基于标准Chrome DevTools Protocol，无需安装扩展
+- 🏢 **企业级部署友好**: 零依赖部署，无需Chrome Web Store审批
 - 📱 **智能标签页管理**: 相同域名复用标签页，避免重复打开
 - 🖼️ **实时截图反馈**: 每次操作后自动截图，提供可视化反馈
 - 🌐 **网络活动监控**: 自动等待页面加载完成
-- 🐳 **Docker环境支持**: 支持容器化Chrome实例
+- 🐳 **原生Docker支持**: 完美支持容器化Chrome实例，无扩展限制
+- ⚡ **两步启动**: 启动Chrome调试模式后运行 `npx chrome-debug-mcp`，无需复杂安装
+- 🔍 **智能浏览器发现**: 自动发现本地和Docker环境中的Chrome实例
 
 ## 安装配置
 
