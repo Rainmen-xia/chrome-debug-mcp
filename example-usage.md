@@ -2,7 +2,19 @@
 
 ## 快速开始示例
 
-### 1. 基础网页浏览示例
+### 1. 基础网页浏览示例 (推荐方式)
+
+```bash
+# 1. 启动Chrome（重要！）
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --remote-debugging-port=9222 \
+  --user-data-dir=/tmp/chrome-debug
+
+# 2. 直接使用npx启动MCP服务器
+npx chrome-debug-mcp
+```
+
+### 2. 本地开发方式
 
 ```bash
 # 1. 启动Chrome（重要！）
@@ -11,14 +23,29 @@
   --user-data-dir=/tmp/chrome-debug
 
 # 2. 在新终端中启动MCP服务器
+git clone https://github.com/rainmenxia/chrome-debug-mcp.git
 cd chrome-debug-mcp
+npm install
 npm run build
 npm start
 ```
 
-### 2. 与AI助手集成示例
+### 3. 与AI助手集成示例
 
 在支持MCP的AI助手中（如Claude Desktop），配置服务器：
+
+```json
+{
+  "mcpServers": {
+    "browser-automation": {
+      "command": "npx",
+      "args": ["chrome-debug-mcp"]
+    }
+  }
+}
+```
+
+或者使用本地版本：
 
 ```json
 {

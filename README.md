@@ -2,6 +2,30 @@
 
 一个基于 Model Context Protocol (MCP) 的浏览器自动化服务器，专门用于连接 Chrome 调试端口，实现带登录状态的浏览器自动化操作。
 
+## 🚀 快速开始
+
+### 方式一：直接使用 (推荐)
+
+使用 npx 一键启动，无需安装：
+
+```bash
+# 1. 启动Chrome调试模式
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
+
+# 2. 直接运行MCP服务器
+npx chrome-debug-mcp
+```
+
+### 方式二：本地开发
+
+```bash
+git clone https://github.com/rainmenxia/chrome-debug-mcp.git
+cd chrome-debug-mcp
+npm install
+npm run build
+npm start
+```
+
 ## 核心特性
 
 - ✅ **Chrome调试端口连接**: 连接现有Chrome实例，保持登录状态
@@ -13,22 +37,9 @@
 
 ## 安装配置
 
-### 1. 安装依赖
+### 1. 启动Chrome调试模式 (必需)
 
-```bash
-cd chrome-debug-mcp
-npm install
-```
-
-### 2. 编译TypeScript
-
-```bash
-npm run build
-```
-
-### 3. 启动Chrome (重要)
-
-服务器需要连接到带调试端口的Chrome实例。请用以下方式启动Chrome：
+服务器需要连接到带调试端口的Chrome实例：
 
 ```bash
 # macOS
@@ -46,11 +57,22 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 - 启动后可以正常登录各种网站，登录状态会保持
 - 服务器会复用这个Chrome实例，无需重新登录
 
-## 使用方法
-
-### 作为stdio MCP服务器
+### 2. 配置MCP客户端
 
 在您的MCP客户端配置中添加：
+
+```json
+{
+  "mcpServers": {
+    "browser-automation": {
+      "command": "npx",
+      "args": ["chrome-debug-mcp"]
+    }
+  }
+}
+```
+
+或者使用本地安装版本：
 
 ```json
 {
@@ -61,12 +83,6 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
     }
   }
 }
-```
-
-### 直接运行测试
-
-```bash
-npm start
 ```
 
 ## 可用工具
@@ -267,6 +283,16 @@ npm run dev
 
 # 查看MCP通信日志
 DEBUG=mcp* npm start
+```
+
+## 发布到npm
+
+```bash
+# 构建项目
+npm run build
+
+# 发布到npm
+npm publish
 ```
 
 ## 致谢

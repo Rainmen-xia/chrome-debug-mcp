@@ -1,9 +1,39 @@
 {
   "name": "chrome-debug-mcp",
   "version": "1.0.0",
-  "description": "MCP Server for Chrome browser automation via debugging protocol",
+  "description": "MCP Server for Chrome browser automation via debugging protocol with session persistence",
   "main": "build/index.js",
   "type": "module",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "chrome",
+    "browser-automation",
+    "debugging",
+    "puppeteer",
+    "automation",
+    "ai",
+    "claude",
+    "session-persistence"
+  ],
+  "author": "rainmenxia",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rainmenxia/chrome-debug-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rainmenxia/chrome-debug-mcp/issues"
+  },
+  "homepage": "https://github.com/rainmenxia/chrome-debug-mcp#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "build/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -13,7 +43,9 @@
     "test-chrome": "node debug/test-chrome-connection.js",
     "test-base64": "node debug/test-base64.js",
     "test-network": "node debug/test-network.js",
-    "debug-verbose": "DEBUG=* node build/index.js"
+    "debug-verbose": "DEBUG=* node build/index.js",
+    "prepublishOnly": "npm run build",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
