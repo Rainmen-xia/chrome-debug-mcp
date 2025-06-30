@@ -32,6 +32,7 @@
   "files": [
     "build/",
     "README.md",
+    "README.zh.md",
     "LICENSE"
   ],
   "scripts": {

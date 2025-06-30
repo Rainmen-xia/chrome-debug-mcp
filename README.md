@@ -1,22 +1,24 @@
-# Chrome调试MCP服务器
+# Chrome Debug MCP Server
 
-一个基于 Model Context Protocol (MCP) 的浏览器自动化服务器，专门用于连接 Chrome 调试端口，实现带登录状态的浏览器自动化操作。
+**Language**: [English](README.md) | [中文](README.zh.md)
 
-## 🚀 快速开始
+A Model Context Protocol (MCP) server for Chrome browser automation via debugging protocol, specifically designed to connect to Chrome debugging ports and enable browser automation with persistent login sessions.
 
-### 方式一：直接使用 (推荐)
+## 🚀 Quick Start
 
-使用 npx 一键启动，无需安装：
+### Option 1: Direct Usage (Recommended)
+
+Launch with npx - no installation required:
 
 ```bash
-# 1. 启动Chrome调试模式
+# 1. Start Chrome in debug mode
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 
-# 2. 直接运行MCP服务器
+# 2. Run MCP server directly
 npx chrome-debug-mcp
 ```
 
-### 方式二：本地开发
+### Option 2: Local Development
 
 ```bash
 git clone https://github.com/rainmenxia/chrome-debug-mcp.git
@@ -26,20 +28,20 @@ npm run build
 npm start
 ```
 
-## 核心特性
+## Core Features
 
-- ✅ **Chrome调试端口连接**: 连接现有Chrome实例，保持登录状态
-- 🔍 **智能浏览器发现**: 自动发现本地和Docker环境中的Chrome实例  
-- 📱 **智能标签页管理**: 相同域名复用标签页，避免重复打开
-- 🖼️ **实时截图反馈**: 每次操作后自动截图，提供可视化反馈
-- 🌐 **网络活动监控**: 自动等待页面加载完成
-- 🐳 **Docker环境支持**: 支持容器化Chrome实例
+- ✅ **Chrome Debug Port Connection**: Connect to existing Chrome instances, preserving login sessions
+- 🔍 **Smart Browser Discovery**: Auto-discover Chrome instances in local and Docker environments  
+- 📱 **Intelligent Tab Management**: Reuse tabs for same domains, avoid duplicate openings
+- 🖼️ **Real-time Screenshot Feedback**: Automatic screenshots after each operation for visual feedback
+- 🌐 **Network Activity Monitoring**: Auto-wait for page load completion
+- 🐳 **Docker Environment Support**: Support for containerized Chrome instances
 
-## 安装配置
+## Configuration & Usage
 
-### 1. 启动Chrome调试模式 (必需)
+### 1. Start Chrome Debug Mode (Required)
 
-服务器需要连接到带调试端口的Chrome实例：
+The server needs to connect to a Chrome instance with debugging port enabled:
 
 ```bash
 # macOS
@@ -52,14 +54,14 @@ chrome.exe --remote-debugging-port=9222 --user-data-dir=c:\temp\chrome-debug
 google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
-**重要说明**: 
-- `--user-data-dir` 参数指向一个临时目录，确保Chrome以调试模式启动
-- 启动后可以正常登录各种网站，登录状态会保持
-- 服务器会复用这个Chrome实例，无需重新登录
+**Important Notes**: 
+- `--user-data-dir` parameter points to a temporary directory, ensuring Chrome starts in debug mode
+- After startup, you can log into websites normally, and login sessions will be preserved
+- The server will reuse this Chrome instance, no need to re-login
 
-### 2. 配置MCP客户端
+### 2. Configure MCP Client
 
-在您的MCP客户端配置中添加：
+Add the following configuration to your MCP client:
 
 ```json
 {
@@ -72,35 +74,55 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 }
 ```
 
-或者使用本地安装版本：
+**That's it!** No installation, no downloads, no complex path configuration needed.
 
-```json
-{
-  "mcpServers": {
-    "browser-automation": {
-      "command": "node",
-      "args": ["/path/to/chrome-debug-mcp/build/index.js"]
-    }
-  }
-}
-```
+> 💡 **Alternative Installation Methods**:
+> 
+> **Global Installation**:
+> ```bash
+> npm install -g chrome-debug-mcp
+> ```
+> ```json
+> {
+>   "mcpServers": {
+>     "browser-automation": {
+>       "command": "chrome-debug-mcp"
+>     }
+>   }
+> }
+> ```
+> 
+> **Local Project Installation**:
+> ```bash
+> npm install chrome-debug-mcp
+> ```
+> ```json
+> {
+>   "mcpServers": {
+>     "browser-automation": {
+>       "command": "npx",
+>       "args": ["chrome-debug-mcp"]
+>     }
+>   }
+> }
+> ```
 
-## 可用工具
+## Available Tools
 
 ### 1. launch_browser
-启动浏览器连接，连接到Chrome调试端口。
+Connect to Chrome debug port and initialize browser session.
 
 ```json
 {
   "name": "launch_browser",
   "arguments": {
-    "remote_host": "http://localhost:9222"  // 可选
+    "remote_host": "http://localhost:9222"  // optional
   }
 }
 ```
 
 ### 2. navigate_to
-导航到指定URL，智能管理标签页。
+Navigate to specified URL with intelligent tab management.
 
 ```json
 {
@@ -112,7 +134,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 3. click
-在指定坐标位置点击。
+Click at specified coordinates.
 
 ```json
 {
@@ -124,7 +146,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 4. type_text
-输入文本内容。
+Input text content.
 
 ```json
 {
@@ -136,7 +158,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 5. scroll_down / scroll_up
-滚动页面。
+Scroll the page.
 
 ```json
 {
@@ -146,7 +168,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 6. hover
-将鼠标悬停在指定位置。
+Hover mouse at specified position.
 
 ```json
 {
@@ -158,7 +180,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 7. resize_browser
-调整浏览器窗口大小。
+Resize browser window.
 
 ```json
 {
@@ -170,7 +192,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 8. get_page_content
-获取当前页面HTML内容。
+Get current page HTML content.
 
 ```json
 {
@@ -180,7 +202,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 ```
 
 ### 9. close_browser
-关闭浏览器连接。
+Close browser connection.
 
 ```json
 {
@@ -189,52 +211,52 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
 }
 ```
 
-## 典型使用场景
+## Typical Use Cases
 
-### 1. 社交媒体自动化
+### 1. Social Media Automation
 ```bash
-# 先在Chrome中手动登录Twitter/微博等
-# 然后使用MCP工具进行自动化操作
+# Manually log into Twitter/Weibo in Chrome first
+# Then use MCP tools for automation
 launch_browser -> navigate_to -> click -> type_text
 ```
 
-### 2. 电商操作
+### 2. E-commerce Operations
 ```bash
-# 保持淘宝/京东登录状态
-# 自动化商品搜索、价格监控等
+# Keep logged-in state for Taobao/JD
+# Automate product search, price monitoring, etc.
 launch_browser -> navigate_to -> type_text -> click
 ```
 
-### 3. 数据抓取
+### 3. Data Scraping
 ```bash
-# 需要登录的网站数据抓取
-# 绕过登录验证，直接操作
+# Scrape data from login-required websites
+# Bypass login verification, direct operations
 launch_browser -> navigate_to -> get_page_content
 ```
 
-## 高级特性
+## Advanced Features
 
-### 智能标签页管理
-- 相同域名（如 `example.com`）会复用已存在的标签页
-- 不同域名会自动创建新标签页
-- 避免重复打开相同网站
+### Intelligent Tab Management
+- Same domains (e.g., `example.com`) reuse existing tabs
+- Different domains automatically create new tabs
+- Avoid duplicate openings of same websites
 
-### 自动等待机制
-- 监控网络活动，等待页面完全加载
-- HTML内容稳定性检测
-- 自动处理动态内容加载
+### Auto-wait Mechanisms
+- Monitor network activity, wait for complete page loading
+- HTML content stability detection
+- Automatic handling of dynamic content loading
 
-### 错误恢复
-- 连接断开自动重连
-- 缓存成功的连接端点
-- 详细的错误日志和反馈
+### Error Recovery
+- Auto-reconnect on connection drops
+- Cache successful connection endpoints
+- Detailed error logs and feedback
 
-## Docker环境支持
+## Docker Environment Support
 
-如果Chrome运行在Docker容器中：
+If Chrome runs in a Docker container:
 
 ```bash
-# Docker中启动Chrome
+# Start Chrome in Docker
 docker run -d --name chrome-debug \
   -p 9222:9222 \
   --shm-size=2gb \
@@ -245,71 +267,71 @@ docker run -d --name chrome-debug \
   --remote-debugging-port=9222
 ```
 
-服务器会自动发现Docker环境中的Chrome实例。
+The server will automatically discover Chrome instances in Docker environments.
 
-## 故障排除
+## Troubleshooting
 
-### Chrome连接失败
-1. 确认Chrome使用 `--remote-debugging-port=9222` 启动
-2. 检查端口9222是否被占用：`lsof -i :9222`
-3. 确认Chrome没有其他实例在运行
+### Chrome Connection Failed
+1. Confirm Chrome is started with `--remote-debugging-port=9222`
+2. Check if port 9222 is occupied: `lsof -i :9222`
+3. Ensure no other Chrome instances are running
 
-### 操作超时
-1. 检查网络连接
-2. 增加页面加载超时时间
-3. 确认目标网站可访问
+### Operation Timeout
+1. Check network connection
+2. Increase page load timeout
+3. Confirm target website is accessible
 
-### 截图失败
-1. 确认页面已完全加载
-2. 检查浏览器窗口大小设置
-3. 尝试刷新页面后重新操作
+### Screenshot Failed
+1. Confirm page is fully loaded
+2. Check browser window size settings
+3. Try refreshing page and retry operation
 
-## 技术架构
+## Technical Architecture
 
 ```
-MCP客户端 ←→ stdio ←→ MCP服务器 ←→ Chrome调试端口 ←→ Chrome浏览器
+MCP Client ←→ stdio ←→ MCP Server ←→ Chrome Debug Port ←→ Chrome Browser
 ```
 
-- **传输协议**: stdio (标准输入输出)
-- **浏览器引擎**: Puppeteer + Chrome DevTools Protocol
-- **连接方式**: WebSocket (Chrome调试端口)
-- **图像格式**: WebP/PNG base64编码
+- **Transport Protocol**: stdio (standard input/output)
+- **Browser Engine**: Puppeteer + Chrome DevTools Protocol
+- **Connection Method**: WebSocket (Chrome debug port)
+- **Image Format**: WebP/PNG base64 encoding
 
-## 开发调试
+## Development & Debugging
 
 ```bash
-# 监听模式编译
+# Watch mode compilation
 npm run dev
 
-# 查看MCP通信日志
+# View MCP communication logs
 DEBUG=mcp* npm start
 ```
 
-## 发布到npm
+## Publishing to npm
 
 ```bash
-# 构建项目
+# Build project
 npm run build
 
-# 发布到npm
+# Publish to npm
 npm publish
 ```
 
-## 致谢
+## Acknowledgments
 
-本项目的设计理念和核心思路受到了 [RooCode](https://github.com/RooCodeInc/Roo-Code) 项目的启发。RooCode 是一个优秀的浏览器自动化MCP服务器实现，为我们提供了宝贵的技术参考和设计思路。
+This project's design philosophy and core concepts were inspired by the [RooCode](https://github.com/RooCodeInc/Roo-Code) project. RooCode is an excellent browser automation MCP server implementation that provided valuable technical references and design insights.
 
-特别感谢 RooCode 团队在以下方面的贡献：
-- 🎯 **MCP协议集成**: 提供了MCP服务器与浏览器自动化结合的技术方案
-- 🔗 **浏览器连接**: 展示了如何优雅地管理浏览器连接和会话
-- 📋 **工具API设计**: 为浏览器操作的标准化提供了参考框架
+Special thanks to the RooCode team for their contributions in the following areas:
+- 🎯 **MCP Protocol Integration**: Provided technical solutions for combining MCP servers with browser automation
+- 🔗 **Browser Connection**: Demonstrated elegant browser connection and session management
+- 📋 **Tool API Design**: Provided reference frameworks for standardizing browser operations
 
-在 RooCode 的基础上，本项目进一步专注于**带登录状态的浏览器自动化**，通过连接现有Chrome调试端口来保持用户会话，实现了更贴近实际应用场景的自动化能力。
+Building upon RooCode's foundation, this project further focuses on **browser automation with persistent login sessions**, achieving more practical automation capabilities by connecting to existing Chrome debug ports to maintain user sessions.
 
-## 许可证
+## License
 
 MIT License
 
 ---
 
-**核心优势**: 这个MCP服务器的最大特点是能够连接到已有的Chrome实例并保持登录状态，非常适合需要用户认证的自动化场景。通过Chrome调试端口，可以接管用户已经登录的浏览器会话，实现真正的"带登录态"自动化操作。 
+**Core Advantage**: The biggest feature of this MCP server is its ability to connect to existing Chrome instances and maintain login sessions, making it ideal for automation scenarios requiring user authentication. Through Chrome debug ports, it can take over user-logged browser sessions, achieving true "session-persistent" browser automation. 
