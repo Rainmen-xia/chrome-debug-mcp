@@ -1,5 +1,5 @@
 {
-  "name": "chrome-debug-mcp-server",
+  "name": "chrome-debug-mcp",
   "version": "1.0.0",
   "description": "MCP Server for Chrome browser automation via debugging protocol",
   "main": "build/index.js",
@@ -27,6 +27,6 @@
     "typescript": "^5.0.0"
   },
   "bin": {
-    "chrome-debug-mcp-server": "build/index.js"
+    "chrome-debug-mcp": "build/index.js"
   }
 } 

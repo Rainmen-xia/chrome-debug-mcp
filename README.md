@@ -16,7 +16,7 @@
 ### 1. 安装依赖
 
 ```bash
-cd chrome-debug-mcp-server
+cd chrome-debug-mcp
 npm install
 ```
 
@@ -57,7 +57,7 @@ google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/chrome-debug
   "mcpServers": {
     "browser-automation": {
       "command": "node",
-      "args": ["/path/to/chrome-debug-mcp-server/build/index.js"]
+      "args": ["/path/to/chrome-debug-mcp/build/index.js"]
     }
   }
 }
@@ -268,6 +268,17 @@ npm run dev
 # 查看MCP通信日志
 DEBUG=mcp* npm start
 ```
+
+## 致谢
+
+本项目的设计理念和核心思路受到了 [RooCode](https://github.com/RooCodeInc/Roo-Code) 项目的启发。RooCode 是一个优秀的浏览器自动化MCP服务器实现，为我们提供了宝贵的技术参考和设计思路。
+
+特别感谢 RooCode 团队在以下方面的贡献：
+- 🎯 **MCP协议集成**: 提供了MCP服务器与浏览器自动化结合的技术方案
+- 🔗 **浏览器连接**: 展示了如何优雅地管理浏览器连接和会话
+- 📋 **工具API设计**: 为浏览器操作的标准化提供了参考框架
+
+在 RooCode 的基础上，本项目进一步专注于**带登录状态的浏览器自动化**，通过连接现有Chrome调试端口来保持用户会话，实现了更贴近实际应用场景的自动化能力。
 
 ## 许可证
 

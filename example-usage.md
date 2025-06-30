@@ -11,7 +11,7 @@
   --user-data-dir=/tmp/chrome-debug
 
 # 2. 在新终端中启动MCP服务器
-cd chrome-debug-mcp-server
+cd chrome-debug-mcp
 npm run build
 npm start
 ```
@@ -25,7 +25,7 @@ npm start
   "mcpServers": {
     "browser-automation": {
       "command": "node",
-      "args": ["/Users/你的用户名/path/to/chrome-debug-mcp-server/build/index.js"]
+      "args": ["/Users/你的用户名/path/to/chrome-debug-mcp/build/index.js"]
     }
   }
 }
