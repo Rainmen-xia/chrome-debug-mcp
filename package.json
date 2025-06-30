@@ -1,0 +1,32 @@
+{
+  "name": "chrome-debug-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for Chrome browser automation via debugging protocol",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node build/index.js",
+    "debug": "node --inspect build/index.js",
+    "test": "node debug/test-mcp-server.js",
+    "test-chrome": "node debug/test-chrome-connection.js",
+    "test-base64": "node debug/test-base64.js",
+    "test-network": "node debug/test-network.js",
+    "debug-verbose": "DEBUG=* node build/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "puppeteer-core": "^21.0.0",
+    "axios": "^1.6.0",
+    "p-wait-for": "^5.0.0",
+    "delay": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "bin": {
+    "chrome-debug-mcp-server": "build/index.js"
+  }
+} 
