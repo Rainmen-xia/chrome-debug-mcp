@@ -4,6 +4,10 @@
 
 A Model Context Protocol (MCP) server for Chrome browser automation via debugging protocol, specifically designed to connect to Chrome debugging ports and enable browser automation with persistent login sessions.
 
+<a href="https://glama.ai/mcp/servers/@Rainmen-xia/chrome-debug-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@Rainmen-xia/chrome-debug-mcp/badge" alt="Chrome Debug Server MCP server" />
+</a>
+
 ## 🎯 Project Advantages
 
 ### 🚀 Core Technical Advantages
@@ -364,4 +368,4 @@ MIT License
 
 ---
 
-**Core Advantage**: The biggest feature of this MCP server is its ability to connect to existing Chrome instances and maintain login sessions, making it ideal for automation scenarios requiring user authentication. Through Chrome debug ports, it can take over user-logged browser sessions, achieving true "session-persistent" browser automation. 
+**Core Advantage**: The biggest feature of this MCP server is its ability to connect to existing Chrome instances and maintain login sessions, making it ideal for automation scenarios requiring user authentication. Through Chrome debug ports, it can take over user-logged browser sessions, achieving true "session-persistent" browser automation.
